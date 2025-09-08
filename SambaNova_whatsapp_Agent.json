@@ -1,0 +1,201 @@
+{
+  "name": "SambaNova_whatsapp_Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "messages"
+        ],
+        "options": {}
+      },
+      "type": "n8n-nodes-base.whatsAppTrigger",
+      "typeVersion": 1,
+      "position": [
+        -208,
+        -224
+      ],
+      "id": "7920c5ec-0ce0-488b-aa58-c842b38fcef9",
+      "name": "WhatsApp Trigger",
+      "webhookId": "5ea04c72-e32f-491a-a852-17da45ff2a78",
+      "credentials": {
+        "whatsAppTriggerApi": {
+          "id": "atEJunsqSxd59RaM",
+          "name": "WhatsApp OAuth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "send",
+        "phoneNumberId": "857018597485867",
+        "recipientPhoneNumber": "={{ $('WhatsApp Trigger').item.json.contacts[0].wa_id }}",
+        "textBody": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.whatsApp",
+      "typeVersion": 1,
+      "position": [
+        544,
+        -192
+      ],
+      "id": "849b383a-895b-42c5-8225-328deb116e5b",
+      "name": "Send message",
+      "webhookId": "9c8fecd9-3d15-42c0-81b1-cb8057f95843",
+      "credentials": {
+        "whatsAppApi": {
+          "id": "lRQ4xYnq5Lf3GFbw",
+          "name": "WhatsApp account 5"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('WhatsApp Trigger').item.json.messages[0].from }}"
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        160,
+        -64
+      ],
+      "id": "75045fec-f6b8-447c-b474-749c8026d3d3",
+      "name": "Simple Memory"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.messages[0].text.body }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        128,
+        -320
+      ],
+      "id": "f4839e55-5a5d-4e39-8c5f-4be63e43cb3d",
+      "name": "SambaNova"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "Llama-4-Maverick-17B-128E-Instruct",
+          "mode": "list",
+          "cachedResultName": "Llama-4-Maverick-17B-128E-Instruct"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -16,
+        -64
+      ],
+      "id": "84c08bae-db87-4a54-89b3-1a42ac8eb838",
+      "name": "SambaNova Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "qOpMsJXhCFir8Wnf",
+          "name": "sambanova_n8_mcp"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "value": "mkhristi32@gmail.com",
+          "mode": "list",
+          "cachedResultName": "mkhristi32@gmail.com"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "typeVersion": 1.3,
+      "position": [
+        336,
+        -64
+      ],
+      "id": "aa4be580-04e5-4c19-9f19-04c391acd780",
+      "name": "Get many events in Google Calendar",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "cgbBgFxh8zfZ4ByG",
+          "name": "Google Calendar account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "WhatsApp Trigger": {
+      "main": [
+        [
+          {
+            "node": "SambaNova",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "SambaNova",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SambaNova": {
+      "main": [
+        [
+          {
+            "node": "Send message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "SambaNova Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "SambaNova",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get many events in Google Calendar": {
+      "ai_tool": [
+        [
+          {
+            "node": "SambaNova",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "435271d9-37d4-4436-8b0f-00d183092f91",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7e6336903b9ebcd83d88e44f23f66b707889e7e848298a9fbb0a37c84ca4c528"
+  },
+  "id": "76uw3JYA7ieFRWZc",
+  "tags": []
+}
