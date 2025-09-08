@@ -52,7 +52,7 @@ Register your phone number.
 
 Clone this repo:
 
-git clone https://github.com/yourusername/n8n_automations_magic.git
+git clone https://github.com/martinkhristi/n8n_automations_magic.git
 
 
 Import SambaNova_whatsapp_Agent.json into n8n.
