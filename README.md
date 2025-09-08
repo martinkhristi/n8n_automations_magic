@@ -1,6 +1,16 @@
-📌 Example Workflow: SambaNova WhatsApp Agent
+ SambaNova WhatsApp Agent
 
 This workflow turns WhatsApp into your personal AI assistant powered by SambaNova’s Llama-4 Maverick model.
+
+✅ Prerequisites
+
+Before importing the workflow, make sure you have:
+
+n8n account → https://n8n.io/
+
+SambaNova API key + Base URL → https://sambanova.ai/
+
+WhatsApp Business Account → https://developers.meta.com/
 
 🔹 Features
 
