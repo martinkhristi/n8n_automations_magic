@@ -1,14 +1,71 @@
-# n8n_automations_magic
-n8n_automations_magic is a collection of ready-to-use workflows, nodes, and templates built with n8n  to automate everyday tasks and integrate multiple services with ease.
-🔹 What you’ll find inside
+📌 Example Workflow: SambaNova WhatsApp Agent
 
-Pre-built workflows for email management, notifications, and data pipelines
+This workflow turns WhatsApp into your personal AI assistant powered by SambaNova’s Llama-4 Maverick model.
 
-AI-powered automations using SambaNova, OpenAI, Mistral and other LLMs
+🔹 Features
 
-Real-world business use cases: CRM updates, competitor monitoring, report generation, and more
+Two-way WhatsApp integration (send & receive messages)
 
-Step-by-step setup instructions so you can copy, customize, and run instantly
+AI-powered responses with SambaNova Llama-4 Maverick
 
-🔹 Why this repo?
-No need to reinvent the wheel — just pick a workflow, connect your credentials, and watch the magic happen. Designed to save time, boost productivity, and show how powerful n8n is for both beginners and advanced users.
+Conversation memory for context-aware replies
+
+Google Calendar integration → ask “How’s my day?” and get your events back in WhatsApp
+
+⚙️ Workflow Steps
+
+WhatsApp Trigger – Listens for new messages.
+
+SambaNova Chat Model – Runs AI response with Llama-4 Maverick.
+
+Simple Memory – Keeps conversation context.
+
+Google Calendar Tool – Fetches events.
+
+SambaNova Agent – Orchestrates AI + tools.
+
+Send Message – Replies back in WhatsApp.
+
+🚀 Use Cases
+
+Daily schedule updates in WhatsApp
+
+AI assistant for customer support
+
+Personal productivity agent
+
+Demos for clients
+
+🔧 WhatsApp Setup (Quick Guide)
+
+Go to Meta Developers
+ → Create App (Business).
+
+Add WhatsApp as a product.
+
+Copy your Client ID, Client Secret, and Access Token.
+
+Register your phone number.
+.
+
+📂 Getting Started
+
+Clone this repo:
+
+git clone https://github.com/yourusername/n8n_automations_magic.git
+
+
+Import SambaNova_whatsapp_Agent.json into n8n.
+
+Add credentials:
+
+WhatsApp Business API (Client ID, Secret, Token)
+
+SambaNova API
+
+Google Calendar OAuth
+
+Activate → start chatting with your AI-powered WhatsApp agent.
+Add Webhook URL + Verify Token from n8n.
+
+Test → workflow is live.
